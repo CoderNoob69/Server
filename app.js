@@ -14,7 +14,12 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
 const commentRoutes = require('./routes/commentRoutes');
-const workshopRegRoutes = require('./routes/workshopRegRoutes') 
+const workshopRegRoutes = require('./routes/workshopRegRoutes');
+const contactRoute = require('./contact');
+
+// ContactUs Page
+app.use(express.json());
+app.use('/api', contactRoute);
 
 // Middleware
 app.use(cors());
@@ -46,10 +51,18 @@ app.get('/', (req, res) => {
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
   dbName: "myapp"
 })
   .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+  .catch(err => console.log('MongoDB Connection Error:', err));
+
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 // Export the Express app
 module.exports = app;
