@@ -4,7 +4,7 @@ const {getAllWorkshops, getWorkshopCount} = require("../controllers/workshopCont
 
 const router = express.Router();
 
-router.get('/workshops', getAllWorkshops); // Fetch all workshops
+router.get('/', getAllWorkshops); // Fetch all workshops
 router.get('/workshop-count', getWorkshopCount);
 router.route('/registration/:id').post(createRegistration);
 router.route('/getregs').post(getAllRegistration);

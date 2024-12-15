@@ -31,7 +31,7 @@ exports.deleteUser = async (req, res) => {
 exports.getUserCount = async (req, res) => {
     try {
         const count = await User.countDocuments();
-        // console.log(count);
+        console.log(count);
         res.status(200).json({ userCount: count });
     } catch (error) {
         res.status(500).json({ message: error.message });

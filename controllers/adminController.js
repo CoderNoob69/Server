@@ -1,9 +1,4 @@
 const { Admin } = require('../models/admin');
-const User = require('../models/user'); // Import User model
-const Event = require('../models/event'); // Import Event model
-const Post = require('../models/post'); // Import Post model
-const {Workshop} = require('../models/workshop/workshops.workshop'); // Import Workshop model
-const Project = require('../models/project'); // Import Project model
 const jwt = require('jsonwebtoken'); // Import JWT
 
 // Register a new admin

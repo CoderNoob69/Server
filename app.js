@@ -13,6 +13,7 @@ const app = express();
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
+const eventRoutes = require('./routes/eventRoutes');
 const commentRoutes = require('./routes/commentRoutes');
 const workshopRoutes = require('./routes/workshopRoutes');
 const adminRoutes = require('./routes/adminRoutes'); // Import admin routes
@@ -37,9 +38,11 @@ app.use(passport.session());
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes);
+app.use('/api/events', eventRoutes);
 app.use('/api/comment', commentRoutes);
 app.use('/api/reg', workshopRoutes);
 // app.use('/api/search', searchRoutes);
+app.use('/api/workshop', workshopRoutes);
 app.use('/api/admin', adminRoutes);
 
 // Serve index.html on root
