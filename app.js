@@ -16,10 +16,9 @@ const postRoutes = require('./routes/postRoutes');
 const commentRoutes = require('./routes/commentRoutes');
 const workshopRegRoutes = require('./routes/workshopRegRoutes');
 const contactRoute = require('./contact');
-
-// ContactUs Page
-app.use(express.json());
-app.use('/api', contactRoute);
+const workshopRoutes = require('./routes/workshopRoutes');
+const adminRoutes = require('./routes/adminRoutes'); // Import admin routes
+const { createDefaultAdmin } = require('./models/admin'); // Import createDefaultAdmin function
 
 // Middleware
 app.use(cors());
@@ -41,8 +40,9 @@ app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes);
 app.use('/api/comment', commentRoutes);
-app.use('/api/reg', workshopRegRoutes);
-// app.use('/api/search', searchRoutes);
+app.use('/api/reg', workshopRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api', contactRoute);
 
 // Serve index.html on root
 app.get('/', (req, res) => {
@@ -55,7 +55,10 @@ mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true,
   dbName: "myapp"
 })
-  .then(() => console.log('MongoDB Connected'))
+  .then(async () => {
+    console.log('MongoDB Connected');
+    await createDefaultAdmin(); // Create default admin user
+  })
   .catch(err => console.log('MongoDB Connection Error:', err));
 
 // Start the server
