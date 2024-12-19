@@ -15,7 +15,6 @@ const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const commentRoutes = require('./routes/commentRoutes');
-const workshopRegRoutes = require('./routes/workshopRegRoutes');
 const contactRoute = require('./contact');
 const workshopRoutes = require('./routes/workshopRoutes');
 const adminRoutes = require('./routes/adminRoutes'); // Import admin routes
