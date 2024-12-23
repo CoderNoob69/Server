@@ -36,6 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Route handlers
+
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes);
@@ -45,7 +46,7 @@ app.use('/api/reg', workshopRoutes);
 // app.use('/api/search', searchRoutes);
 app.use('/api/workshop', workshopRoutes);
 app.use('/api/admin', adminRoutes);
-app.use('/api', contactRoute);
+app.use('/api/contact', contactRoute);
 
 // Serve index.html on root
 app.get('/', (req, res) => {
