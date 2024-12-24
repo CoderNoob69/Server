@@ -37,3 +37,13 @@ exports.getUserCount = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+// Fetch all users
+exports.getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find(); // Retrieve all users from the database
+        res.json(users); // Send the users as a response
+    } catch (error) {
+        res.status(500).json({ error: error.message }); // Handle any errors
+    }
+};
