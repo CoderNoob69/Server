@@ -28,4 +28,4 @@ const WorkshopSchema = new mongoose.Schema({
 
 },{timestamps: true})
 
-export const Workshop = mongoose.model("Workshop", WorkshopSchema);
+module.exports = mongoose.model("Workshop", WorkshopSchema);

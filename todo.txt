@@ -1,0 +1,1 @@
+1. update the admincontrollers.js and with the models and its methods
