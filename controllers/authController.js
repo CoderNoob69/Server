@@ -10,19 +10,20 @@ exports.signup = async (req, res) => {
         const newUser = await User.create({ username, email, password });
         res.status(201).json(newUser);
     } catch (error) {
+      console.log(error);
         res.status(400).json({ error: error.message });
     }
 };
 
 exports.login = async (req, res) => {
     try {
-        const { email, password, passkey } = req.body;
+        const { email, password } = req.body;
 
-        if (!email || !password || !passkey) {
-            return res.status(400).json({ message: 'Email, password and passkey are required' });
+        if (!email || !password) {
+            return res.status(400).json({ message: 'Email and password are required' });
         }
 
-        const user = await User.findOne({ email, passkey });
+        const user = await User.findOne({ email});
 
         if (!user) {
             return res.status(401).json({ message: 'Invalid credentials' });
