@@ -10,6 +10,7 @@ exports.signup = async (req, res) => {
         const newUser = await User.create({ username, email, password });
         res.status(201).json(newUser);
     } catch (error) {
+      console.log(error);
         res.status(400).json({ error: error.message });
     }
 };
@@ -22,7 +23,7 @@ exports.login = async (req, res) => {
             return res.status(400).json({ message: 'Email and password are required' });
         }
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email});
 
         if (!user) {
             return res.status(401).json({ message: 'Invalid credentials' });
@@ -31,7 +32,7 @@ exports.login = async (req, res) => {
         const isMatch = await user.validatePassword(password);
 
         if (!isMatch) {
-            return res.status(401).json({ message: 'Invalid credentials' });
+            return res.status(401).json({ message: 'Invalid credentials : password' });
         }
 
         const token = jwt.sign(

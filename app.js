@@ -55,8 +55,8 @@ app.get('/', (req, res) => {
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  // useNewUrlParser: true,
+  // useUnifiedTopology: true,
   dbName: "myapp"
 })
   .then(async () => {
@@ -66,9 +66,13 @@ mongoose.connect(process.env.MONGO_URI, {
   .catch(err => console.log('MongoDB Connection Error:', err));
 
 // Start the server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+const PORT = 5000;
+app.listen(PORT, (err) => {
+  if (err) {
+      console.error('Failed to start server:', err);
+      process.exit(1);
+  }
+  console.log(`Server running on port ${PORT}`);
 });
 
 // Export the Express app
