@@ -25,17 +25,21 @@ const getEventCount = async (req, res) => {
 
 // Create a new event
 const createEvent = async (req, res) => {
-    const { title, category, banner, date, time, type, venue } = req.body; // Destructure event data from request body
+    const { title, category, imageUrl, date, time, eventType, venue, description,capacity,registrationLink } = req.body; // Destructure event data from request body
 
-    console.log(req.body)
+    // console.log("It's server event controller, req.body: ",req.body)
 
     const newEvent = new Event({
         title,
-        imageUrl: banner,
         date,
         time,
-        mode:type,
+        category,
+        description,
+        eventType,
+        imageUrl,
         venue,
+        capacity,
+        registrationLink,
     });
 
     try {
