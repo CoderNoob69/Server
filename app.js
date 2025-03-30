@@ -19,10 +19,13 @@ const contactRoute = require('./contact');
 const workshopRoutes = require('./routes/workshopRoutes');
 const adminRoutes = require('./routes/adminRoutes'); // Import admin routes
 const { createDefaultAdmin } = require('./models/admin'); // Import createDefaultAdmin function
+const teamRoutes = require('./routes/teamRoutes'); // Import team routes
+
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -47,6 +50,8 @@ app.use('/api/reg', workshopRoutes);
 app.use('/api/workshop', workshopRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/contact', contactRoute);
+app.use('/api/team', teamRoutes);
+
 
 // Serve index.html on root
 app.get('/', (req, res) => {
