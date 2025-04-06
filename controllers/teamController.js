@@ -27,3 +27,38 @@ exports.getAllMembers = async (req, res) => {
     res.status(500).json({ error: "Error fetching team members", details: error.message });
   }
 };
+
+// Update team member details
+exports.updateDetails = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updates = req.body;
+
+    const updatedMember = await Team.findByIdAndUpdate(id, updates, { new: true });
+
+    if (!updatedMember) {
+      return res.status(404).json({ message: "Team member not found" });
+    }
+
+    res.status(200).json({ message: "Team member updated successfully", member: updatedMember });
+  } catch (error) {
+    res.status(500).json({ error: "Error updating team member", details: error.message });
+  }
+};
+
+// Delete a team member
+exports.deleteTeamMember = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deletedMember = await Team.findByIdAndDelete(id);
+
+    if (!deletedMember) {
+      return res.status(404).json({ message: "Team member not found" });
+    }
+
+    res.status(200).json({ message: "Team member deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Error deleting team member", details: error.message });
+  }
+};
